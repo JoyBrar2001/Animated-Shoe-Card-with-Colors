@@ -19,6 +19,8 @@ const colors = document.querySelectorAll('.color');
 const shoes = document.querySelectorAll('.shoe');
 const gradients = document.querySelectorAll('.gradient');
 
+let prevColor = "blue";
+
 function changeColor(){
     // Color Dot
     let primary = this.getAttribute('primary');
@@ -38,8 +40,16 @@ function changeColor(){
 
     // Displaying the Gradient
     let gradient = document.querySelector(`.gradient[color="${color}"]`);
-    gradients.forEach(g => g.classList.remove('first'));
+    let prevGradient = document.querySelector(`.gradient[color="${prevColor}"]`)
+    
+    console.log(gradient)
+    console.log(prevGradient)
+
+    gradients.forEach(g => g.classList.remove('first', 'second'));
+    prevGradient.classList.add('second');
     gradient.classList.add('first');
+
+    prevColor = color;
 }
 
 colors.forEach(color => color.addEventListener('click', changeColor));
